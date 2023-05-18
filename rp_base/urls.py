@@ -9,4 +9,6 @@ urlpatterns = [
     path('', views.index, name = 'index'),
     # Page with the list of places.
     path('places/', views.places, name = 'places'),
+    # Page for creation of the new place.
+    path('new_place/', views.new_place, name = 'new_place'),
 ]

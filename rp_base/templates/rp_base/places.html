@@ -1,8 +1,9 @@
 <p>Places</p>
 <ul>
-    {% for place in places %}]
+    {% for place in places %}
     <li>{{ place }}</li>
     {% empty %}
     <li><p>No places added yet!</p></li>
     {% endfor %}
 </ul>
+<a href = "{% url 'rp_base:new_place' %}">Add new place</a>
