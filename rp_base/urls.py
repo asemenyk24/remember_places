@@ -7,4 +7,6 @@ app_name = 'rp_base'
 urlpatterns = [
     # Home page.
     path('', views.index, name = 'index'),
+    # Page with the list of places.
+    path('places/', views.places, name = 'places'),
 ]

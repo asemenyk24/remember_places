@@ -1,0 +1,8 @@
+<p>Places</p>
+<ul>
+    {% for place in places %}]
+    <li>{{ place }}</li>
+    {% empty %}
+    <li><p>No places added yet!</p></li>
+    {% endfor %}
+</ul>
