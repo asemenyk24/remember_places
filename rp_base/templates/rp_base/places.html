@@ -1,7 +1,11 @@
 <p>Places</p>
 <ul>
     {% for place in places %}
-    <li>{{ place }}</li>
+    <li>
+        <p>{{ place.name }}</p>
+        <p>{{ place.date_added|date:'M d, Y H:i' }}</p>
+        <p><a href = "{% url 'rp_base:edit_place' place.id %}">Edit</a></p>
+    </li>
     {% empty %}
     <li><p>No places added yet!</p></li>
     {% endfor %}

@@ -29,3 +29,19 @@ def new_place(request):
     # Display empty or invalid form.
     context = {'form': form}
     return render(request, 'rp_base/new_place.html', context)
+
+
+def edit_place(request, place_id):
+    """Edit existing place."""
+    place = Place.objects.get(id = place_id)
+    if request.method != 'POST':
+        # Place exists, fill the form.
+        form = PlaceForm(instance = place)
+    else:
+        # POST data sent, handle data.
+        form = PlaceForm(instance = place, data = request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('rp_base:places', place_id = place.id)
+    context = {'place': place, 'form': form}
+    return render(request, 'rp_base/edit_place.html', context)

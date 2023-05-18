@@ -11,4 +11,6 @@ urlpatterns = [
     path('places/', views.places, name = 'places'),
     # Page for creation of the new place.
     path('new_place/', views.new_place, name = 'new_place'),
+    # Place edit page.
+    path('edit_place/<int:place_id>/', views.edit_place, name = 'edit_place'),
 ]
