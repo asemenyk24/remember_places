@@ -3,6 +3,8 @@
     <h3>Welcome {{ user.username }} !!!</h3>
     <br /><br />
     <a href="{% url 'account_logout' %}" class="btn btn-danger">Logout</a>
+    <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="Profile Picture" class="profile-picture">
+    <p>Last login: {{ user.socialaccount_set.all.0.last_login}}</p>
 {% endif %}
 <p>Places</p>
 <ul>
