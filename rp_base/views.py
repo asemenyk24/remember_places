@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Place
 from .forms import PlaceForm
+from django.http import Http404
 
 
 def index(request):
@@ -12,7 +13,7 @@ def index(request):
 @login_required
 def places(request):
     """Displays places list."""
-    places = Place.objects.order_by('date_added')
+    places = Place.objects.filter(user = request.user).order_by('date_added')
     context = {'places': places}
     return render(request, 'rp_base/places.html', context)
 
@@ -27,7 +28,9 @@ def new_place(request):
         # POST data sent, handle data.
         form = PlaceForm(data = request.POST)
         if form.is_valid():
-            form.save()
+            new_place = form.save(commit = False)
+            new_place.user = request.user
+            new_place.save()
             return redirect('rp_base:places')
     # Display empty or invalid form.
     context = {'form': form}
@@ -38,6 +41,9 @@ def new_place(request):
 def edit_place(request, place_id):
     """Edit existing place."""
     place = Place.objects.get(id = place_id)
+    # Check if theme belongs to its owner.
+    if place.user != request.user:
+        raise Http404
     if request.method != 'POST':
         # Place exists, fill the form.
         form = PlaceForm(instance = place)
@@ -53,7 +59,11 @@ def edit_place(request, place_id):
 
 @login_required
 def delete_place(request, place_id):
+    """Deletes selected place."""
     place = Place.objects.get(id = place_id)
+    # Check if theme belongs to its owner.
+    if place.user != request.user:
+        raise Http404
     if request.method == 'POST':
         place.delete()
         return redirect('rp_base:places')
