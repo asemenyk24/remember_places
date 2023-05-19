@@ -1,6 +1,6 @@
 {% load socialaccount %}
 {% if user.is_authenticated %}
-    <h3>Welcome {{ user.username }} !!!</h3>
+    <h3>Welcome {{ user.socialaccount_set.all.0.extra_data.name }} !!!</h3>
     <br /><br />
     <a href="{% url 'account_logout' %}" class="btn btn-danger">Logout</a>
     <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="Profile Picture" class="profile-picture">
