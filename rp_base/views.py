@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Place
 from .forms import PlaceForm
 
@@ -8,6 +9,7 @@ def index(request):
     return render(request, 'rp_base/index.html')
 
 
+@login_required
 def places(request):
     """Displays places list."""
     places = Place.objects.order_by('date_added')
@@ -15,6 +17,7 @@ def places(request):
     return render(request, 'rp_base/places.html', context)
 
 
+@login_required
 def new_place(request):
     """Creates new place."""
     if request.method != 'POST':
@@ -31,6 +34,7 @@ def new_place(request):
     return render(request, 'rp_base/new_place.html', context)
 
 
+@login_required
 def edit_place(request, place_id):
     """Edit existing place."""
     place = Place.objects.get(id = place_id)
@@ -45,3 +49,13 @@ def edit_place(request, place_id):
             return redirect('rp_base:places', place_id = place.id)
     context = {'place': place, 'form': form}
     return render(request, 'rp_base/edit_place.html', context)
+
+
+@login_required
+def delete_place(request, place_id):
+    place = Place.objects.get(id = place_id)
+    if request.method == 'POST':
+        place.delete()
+        return redirect('rp_base:places')
+    context = {'place': place}
+    return render(request, 'rp_base/delete_place.html', context)

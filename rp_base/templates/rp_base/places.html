@@ -13,6 +13,7 @@
         <p>{{ place.name }}</p>
         <p>{{ place.date_added|date:'M d, Y H:i' }}</p>
         <p><a href = "{% url 'rp_base:edit_place' place.id %}">Edit</a></p>
+        <p><a href = "{% url 'rp_base:delete_place' place.id %}">Delete</a></p>
     </li>
     {% empty %}
     <li><p>No places added yet!</p></li>

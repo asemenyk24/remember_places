@@ -1,6 +1,6 @@
 <p><a href = "{% url 'rp_base:places' %}">Go back</a></p>
 <p>Edit place</p>
-<form action = "{% url 'rp_base:edit_place' place.id %}" method = "post">
+<form action = "{% url 'rp_base:edit_place' place.id %}" method = "POST">
   {% csrf_token %}
   {{ form.as_p }}
   <button name = "submit">Save changes</button>

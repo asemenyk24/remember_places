@@ -13,4 +13,6 @@ urlpatterns = [
     path('new_place/', views.new_place, name = 'new_place'),
     # Place edit page.
     path('edit_place/<int:place_id>/', views.edit_place, name = 'edit_place'),
+    # Delete place.
+    path('delete_place/<int:place_id>/', views.delete_place, name = 'delete_place'),
 ]
