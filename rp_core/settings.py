@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 from decouple import config
 
@@ -41,12 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Added.
     'rp_base',
-    "django.contrib.sites",
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
-    "allauth.socialaccount.providers.google",
-    "allauth.socialaccount.providers.vk",
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.vk',
+    'django.contrib.gis',
+    'mapwidgets',
 ]
 
 MIDDLEWARE = [
@@ -85,8 +88,12 @@ WSGI_APPLICATION = 'rp_core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '12b34c56a78k',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -126,6 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -133,7 +141,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Login settings
-SITE_ID = 2
+SITE_ID = 3
 ACCOUNT_EMAIL_VERIFICATION = "none"
 LOGIN_REDIRECT_URL = "/places"
 ACCOUNT_LOGOUT_ON_GET = True
@@ -155,3 +163,20 @@ SOCIALACCOUNT_PROVIDERS = {
 AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
+
+# GDAL fix
+if os.name == 'nt':
+    VENV_BASE = os.environ['VIRTUAL_ENV']
+    os.environ['PATH'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo') + ';' + os.environ['PATH']
+    os.environ['PROJ_LIB'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo\\data\\proj') + ';' + os.environ['PATH']
+
+# Map settings
+MAP_WIDGETS = {
+    "GooglePointFieldWidget": (
+        ("zoom", 15),
+        ("mapCenterLocation", [56.015283, 92.893248]),
+        ("markerFitZoom", 11),
+        ("GooglePlaceAutocompleteOptions", {'componentRestrictions': {'country': 'russia'}})
+    ),
+    "GOOGLE_MAP_API_KEY": config('GOOGLE_MAPS_API_KEY', default = ''),
+}

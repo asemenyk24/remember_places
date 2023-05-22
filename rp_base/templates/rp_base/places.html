@@ -1,8 +1,10 @@
 {% load socialaccount %}
 {% if user.is_authenticated %}
-    <h3>Welcome {{ user.socialaccount_set.all.0.extra_data.name }} !!!</h3>
-    <h3>{{ user.socialaccount_set.all.0.extra_data.first_name }} {{ user.socialaccount_set.all.0.extra_data.last_name }}</h3>
-    <br /><br />
+    <h3>
+        Welcome, {{ user.socialaccount_set.all.0.extra_data.name }}
+        {{ user.socialaccount_set.all.0.extra_data.first_name }}
+        {{ user.socialaccount_set.all.0.extra_data.last_name }}!
+    </h3>
     <a href="{% url 'account_logout' %}" class="btn btn-danger">Logout</a>
     <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="Profile Picture" class="profile-picture">
     <p>Last login: {{ user.socialaccount_set.all.0.last_login}}</p>

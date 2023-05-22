@@ -1,4 +1,13 @@
-from django.contrib import admin
 from .models import Place
+from django.contrib.gis import admin
+from django import forms
+from django.contrib.gis.db import models
+from mapwidgets.widgets import GooglePointFieldWidget
 
-admin.site.register(Place)
+
+class PlaceAdmin(admin.ModelAdmin):
+    formfield_overrides = {
+        models.PointField: {"widget": GooglePointFieldWidget}
+    }
+
+admin.site.register(Place, PlaceAdmin)
