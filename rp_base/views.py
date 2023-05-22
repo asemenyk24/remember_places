@@ -15,6 +15,7 @@ def places(request):
     """Displays places list."""
     places = Place.objects.filter(user = request.user).order_by('date_added')
     context = {'places': places}
+    context['count'] = context['places'].count()
     return render(request, 'rp_base/places.html', context)
 
 

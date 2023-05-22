@@ -1,5 +1,17 @@
+{% extends "rp_base/base.html" %}
+
 {% load socialaccount %}
-<p>Remember places</p>
-<p>Here must be main page with authorisation</p>
-<a href = "{% provider_login_url 'google' %}">Log in with Google</a>
-<a href = "{% provider_login_url 'vk' %}">Log in with VK</a>
+
+{% block content %}
+
+<div class = "header-bar">
+    <h1>Remember places</h1>
+    <h3>Hi, user! I'm new to programming, you are viewing my app:)</h3>
+    <h3>You can use my app to save places you liked! I also integrated map for you:3</h3>
+    <div class = "social-authorisation">
+        <a id = "google-auth" href = "{% provider_login_url 'google' %}">Log in with Google</a>
+        <a id = "vk-auth" href = "{% provider_login_url 'vk' %}">Log in with VK</a>
+    </div>
+</div>
+
+{% endblock content %}

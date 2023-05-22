@@ -1,6 +1,12 @@
-<p>Are you sure you want to delete "{{ place }}"?</p>
-<a href = "{% url 'rp_base:places' %}">Cancel</a>
-<form method = "POST" action = "">
-  {% csrf_token %}
-  <input type = "submit" name = "Confirm">
-</form>
+{% extends "rp_base/base.html" %}
+
+{% block content %}
+<div>
+  <p>Are you sure you want to delete "{{ place.name }}"?</p>
+  <a href = "{% url 'rp_base:places' %}">Go back</a>
+  <form method = "POST" action = "">
+    {% csrf_token %}
+    <button class = "button" name = "submit">Delete</button>
+  </form>
+</div>
+{% endblock content %}

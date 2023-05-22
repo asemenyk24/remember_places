@@ -1,25 +1,37 @@
-{% load socialaccount %}
-{% if user.is_authenticated %}
-    <h3>
-        Welcome, {{ user.socialaccount_set.all.0.extra_data.name }}
-        {{ user.socialaccount_set.all.0.extra_data.first_name }}
-        {{ user.socialaccount_set.all.0.extra_data.last_name }}!
-    </h3>
-    <a href="{% url 'account_logout' %}" class="btn btn-danger">Logout</a>
-    <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="Profile Picture" class="profile-picture">
-    <p>Last login: {{ user.socialaccount_set.all.0.last_login}}</p>
-{% endif %}
-<p>Places</p>
-<ul>
+{% extends "rp_base/base.html" %}
+
+{% block content %}
+
+<div class = "header-bar">
+    {% load socialaccount %}
+    {% if user.is_authenticated %}
+    <div class = "user-hello">
+        <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="Profile Picture" class="profile-picture">
+        <h3>
+            Welcome, {{ user.socialaccount_set.all.0.extra_data.name }}
+            {{ user.socialaccount_set.all.0.extra_data.first_name }}
+            {{ user.socialaccount_set.all.0.extra_data.last_name }}!
+            You have <i>{{ count }}</i> remembered place{{ count|pluralize:"s" }}.
+        </h3>
+    </div>
+        <a href="{% url 'account_logout' %}" class="btn btn-danger">Logout</a>
+    {% endif %}
+</div>
+<div class = "add-place">
+    <h2>Your remembered places:</h2>
+    <a href = "{% url 'rp_base:new_place' %}">Add new</a>
+</div>
+<div class = "places-wrapper">
     {% for place in places %}
-    <li>
-        <p>{{ place.name }}</p>
-        <p>{{ place.date_added|date:'M d, Y H:i' }}</p>
-        <p><a href = "{% url 'rp_base:edit_place' place.id %}">Edit</a></p>
-        <p><a href = "{% url 'rp_base:delete_place' place.id %}">Delete</a></p>
-    </li>
+    <div class = "place-wrapper">
+        <div class = "place-title">
+            <i><a href = "{% url 'rp_base:edit_place' place.id %}">{{ place.name }}</a></i>
+        </div>
+        <a class = "delete-link" href = "{% url 'rp_base:delete_place' place.id %}">&#215;</a>
+    </div>
     {% empty %}
-    <li><p>No places added yet!</p></li>
+    <p>No places added yet!</p>
     {% endfor %}
-</ul>
-<a href = "{% url 'rp_base:new_place' %}">Add new place</a>
+</div>
+
+{% endblock content %}

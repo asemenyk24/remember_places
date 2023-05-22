@@ -25,10 +25,14 @@
 {% endblock extrahead %}
 
 {% block content %}
-<p><a href = "{% url 'rp_base:places' %}">Go back</a></p>
-<form action = "{% url 'rp_base:new_place' %}" method = "POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button name = "submit">Add place</button>
-</form>
+
+<div>
+    <p><a href = "{% url 'rp_base:places' %}">Go back</a></p>
+    <form action = "{% url 'rp_base:new_place' %}" method = "POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class = "button" name = "submit">Add place</button>
+    </form>
+</div>
+
 {% endblock content %}

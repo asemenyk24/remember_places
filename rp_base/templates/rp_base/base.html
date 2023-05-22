@@ -4,7 +4,158 @@
 
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <title>Remember Places!</title>
+		<meta name = "viewport" content = "width=device-width, initial-scale=1">
+        <style>
+			body{
+				font-family: Verdana, sans-serif;
+				background-color: aliceblue;
+				padding-top: 50px;
+			}
+			.container{
+                width: 1400px;
+				margin: auto;
+				background-color: #fff;
+				box-shadow: 10px 10px 15px 1px rgba(0, 0, 0, 0.25);
+				padding: 25px;
+				border-radius: 10px;
+			}
+			.header-bar{
+				display: block;
+				color: #fff;
+				padding: 25px;
+				border-radius: 10px;
+				background: linear-gradient(70deg, royalblue, darkorchid);
+			}
+			.user-hello{
+			    display: flex;
+			}
+			.user-hello img{
+			    width: 100px;
+			    border-radius: 20px;
+			    margin-right: 20px;
+			    border: solid 2px aliceblue;
+			}
+			.user-hello h3{
+			    margin-top: 36px;
+			    font-size: 24px;
+			}
+			.header-bar a{
+				color: #fff;
+				text-decoration: none;
+				font-size: 20px;
+				padding-left: 20px;
+			}
+			.header-bar{
+				color: pink;
+				text-shadow: 1px 1px darkgray;
+			}
+			.add-place{
+			    display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 10px;
+			}
+			.add-place a{
+				margin-right: 5px;
+				font-size: 30px;
+				text-decoration: none;
+				color: darkgray;
+				border: solid 2px darkgrey;
+				padding: 10px;
+				border-radius: 10px;
+			}
+			.add-place a:hover{
+				color: limegreen;
+				text-shadow: 2px 2px darkgray;
+			}
+			.place-wrapper{
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 20px;
+				background-color: #fff;
+				border-top: 1px solid darkgray;
+			}
+			.place-title{
+				display: flex;
+				font-size: 24px;
+				padding-top: 20px;
+			}
+			.place-title a{
+				text-decoration: none;
+				color: royalblue;
+				margin-left: 15px;
+			}
+			.place-title a:hover{
+				color: pink;
+				text-shadow: 1px 1px darkgray;
+			}
+			.delete-link{
+				text-decoration: none;
+				font-weight: 900;
+				color: darkgray;
+				font-size: 30px;
+				padding-right: 50px;
+			}
+			.delete-link:hover{
+				color: red;
+				text-shadow: 2px 2px darkgray;
+			}
+			.social-authorisation{
+			    display: flex;
+			    justify-content: space-between;
+			    margin: 40px 225px 0 200px
+			}
+			#google-auth{
+			    border: solid 2px #fff;
+			    padding: 15px;
+			    border-radius: 25px;
+			    width: 190px;
+			    background-color: darkorange;
+			}
+			#vk-auth{
+			    border: solid 2px #fff;
+			    padding: 15px;
+			    border-radius: 25px;
+			    width: 190px;
+			    text-align: center;
+			    background-color: dodgerblue;
+			}
+			.social-authorisation a:hover{
+			    color: pink;
+				text-shadow: 1px 1px darkgray;
+			}
+            input[type = text], textarea{
+				border: 1px solid purple;
+				border-radius: 5px;
+				width: 78%;
+				padding: 10px;
+			}
+			label{
+				padding-top: 10px !important;
+				display: block;
+				margin-bottom: 5px;
+			}
+			button{
+			    margin-top: 15px;
+			    border: 1px solid purple;
+				background-color: #FAFAFA;
+				color: purple;
+				padding: 10px;
+				font-size: 14px;
+				border-radius: 5px;
+				cursor: pointer;
+				text-decoration: none;
+			}
+            button:hover{
+                color: pink;
+				border: 1px solid pink;
+				text-shadow: 1px 1px darkgray;
+            }
+		</style>
+
     {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
     <title>Map Widgets - Example Project</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
@@ -13,14 +164,12 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
 
-
-
     {% block extrahead %}
     {% endblock extrahead %}
 
 </head>
 <body>
-    <div class="container help-block" >
+    <div class = "container" >
         {% block content %}
         {% endblock content %}
     </div>
