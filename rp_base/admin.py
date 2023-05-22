@@ -1,6 +1,5 @@
 from .models import Place
 from django.contrib.gis import admin
-from django import forms
 from django.contrib.gis.db import models
 from mapwidgets.widgets import GooglePointFieldWidget
 

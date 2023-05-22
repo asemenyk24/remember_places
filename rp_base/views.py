@@ -52,7 +52,7 @@ def edit_place(request, place_id):
         form = PlaceForm(instance = place, data = request.POST)
         if form.is_valid():
             form.save()
-            return redirect('rp_base:places', place_id = place.id)
+            return redirect('rp_base:places')
     context = {'place': place, 'form': form}
     return render(request, 'rp_base/edit_place.html', context)
 

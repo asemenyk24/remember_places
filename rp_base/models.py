@@ -14,7 +14,6 @@ class Place(models.Model):
     date_added = models.DateTimeField(auto_now_add = True)
     location = models.PointField(help_text="To generate the map for your location", null = True, blank = True)
 
-
     def __unicode__(self):
         """Text representation of the model."""
         return self.name
