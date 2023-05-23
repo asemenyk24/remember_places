@@ -11,8 +11,8 @@ class Place(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE, null = True, blank = True)
     name = models.CharField(max_length = 100)
     description = models.TextField(null = True, blank = True)
-    date_added = models.DateTimeField(auto_now_add = True)
-    location = models.PointField(help_text="To generate the map for your location", null = True, blank = True)
+    date_added = models.DateTimeField(auto_now_add = True, null = True, blank = True)
+    location = models.PointField(null = True, blank = True)
 
     def __unicode__(self):
         """Text representation of the model."""
