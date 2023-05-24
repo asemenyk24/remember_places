@@ -22,11 +22,3 @@ jobs:
           pip install requirments.txt
      - name: Run flake8
        run: flake8 .
-
-     - name: Deploy 🚀
-       uses: asemenyk24/github-pages-deploy-action@3.7.1
-       with:
-          GITHUB_TOKEN: ${{ secrets.KEY }}
-          BRANCH: gh-pages
-          FOLDER: public
-          CLEAN: true
