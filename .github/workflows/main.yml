@@ -21,7 +21,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requirments.txt
      - name: Run flake8
-       run: flake8
+       run: flake8 .
 
      - name: Deploy 🚀
        uses: asemenyk24/github-pages-deploy-action@3.7.1
