@@ -53,4 +53,3 @@
         }
     });
 })(mapWidgets.jQuery);
-

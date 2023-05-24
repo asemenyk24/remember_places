@@ -1,6 +1,6 @@
 from django.test import TestCase
-from django.urls import reverse, resolve
-from rp_base.views import places, new_place, delete_place, edit_place
+from django.urls import resolve, reverse
+from rp_base.views import delete_place, edit_place, new_place, places
 from rp_base.models import Place
 
 
@@ -21,4 +21,4 @@ class TestUrls(TestCase):
     def test_delete_place_url_resolves(self):
         place = Place.objects.create(name = 'Testing')
         url = reverse('rp_base:delete_place', kwargs = {'place_id': place.id})
-        self.assertEquals(resolve(url).func, delete_place)\
+        self.assertEquals(resolve(url).func, delete_place)

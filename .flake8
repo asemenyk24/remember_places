@@ -1,0 +1,20 @@
+[flake8]
+ignore = C101,D403,F403,F405,I100,I201,W503,W504,E251
+exclude =
+    .git,
+    __pycache__,
+    env,
+    rp_base/migrations,
+    static
+filename = *.py
+accept-encodings = utf-8
+inline-quotes = single
+max-complexity = 12
+max-linenumber = 500
+max-line-length = 119
+multiline-quotes = double
+per-file-ignores =
+    manage.py:Q000
+    rp_core/settings.py:Q000
+    rp_base/migrations/0002_place_user.py:E501
+    rp_base/migrations/0003_place_location.py:E501
