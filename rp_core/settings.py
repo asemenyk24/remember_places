@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY', default = '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['172.18.0.4', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -93,7 +93,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': '12b34c56a78k',
-        'HOST': '127.0.0.1',
+        'HOST': 'remember_places_postgis_1',
         'PORT': '5432',
     }
 }
