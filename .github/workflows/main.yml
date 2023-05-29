@@ -22,5 +22,3 @@ jobs:
         run: pip install tox
       - name: Run tox
         run: tox -e py
-      - name: Coveralls GitHub Action
-        uses: coverallsapp/github-action@v1
